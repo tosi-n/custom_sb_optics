@@ -45,7 +45,7 @@ Install requirements in virtual environment
     - [Data preprocessor script](src/custom_sb_optics/pre_process.py):
         - Contains annotator parser, data split for input full transcript list and annotated label dictionary data
             - todo: data augmentation
-    - [Config arguments](src/custom_sb_optics/config/global_args.py and src/custom_sb_optics/config/utils):
+    - [Config arguments](src/custom_sb_optics/config/)
     - Losses for transformer neural network loss functions
     - Ner dataset loader for torch data loading implementation via huggingface
     - [Trainer script](src/custom_sb_optics/train_runner.py):
