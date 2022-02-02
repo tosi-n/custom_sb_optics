@@ -3,7 +3,24 @@ Data Capturing Pipeline
 Version 1.1
 
 #### Requirements & Setup
-    Python 3.7.12
+
+- transformers_version: 4.16.2
+- framework: PyTorch
+- framework_version: 1.10.2
+- python_version: 3.7.12
+- system: Linux
+- ubuntu version: Ubuntu 20.04
+- cpu: x86_64
+- cuda version: 10.1
+- architecture: 64bit
+- fp16: True
+- use_multiprocessing: True
+- use_gpu: True
+- num_gpus: 1
+- gpu: Tesla T4  15GB
+- gitflow
+- auto versioning
+- auto reports for ml metrics
 
 With VENV Create a new virtual environment and install packages.
 
