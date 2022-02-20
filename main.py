@@ -1,3 +1,9 @@
+#!/venv/bin/env python3
+# -*- coding: utf-8 -*-
+# Created By  : tosin_dairo
+# Created Date: 28/01/2022
+# version ='1.0
+
 import os
 import logging
 from src.custom_sb_optics.pre_process import annotate, data_split
