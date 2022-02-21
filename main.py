@@ -6,23 +6,36 @@
 
 import os
 import logging
-from src.custom_sb_optics.pre_process import annotate, data_split
+import pandas as pd
+from ast import literal_eval
+from src.custom_sb_optics.pre_process import read_input, annotate, data_split
 from src.custom_sb_optics.train_runner import NERModel
 from src.custom_sb_optics.config.global_args import global_args
 
+
 if __name__ == "__main__":
-    data_label = {
-        'County' :'Greater Manchester Combined Authority',
-        'Election_day' : 'Thursday 6 May 2021',
-        'Name' : 'Oluwatosin Dairo',
-        'Address' : '707 Ambassador Apartments Waterman Walk Salford M503AW',
-        'Reg_number' : 'QU3-115/1',
-        }
+    # doc_id = 0
+    # data_label = {
+    #     'County' :'Greater Manchester Combined Authority',
+    #     'Election_day' : 'Thursday 6 May 2021',
+    #     'Name' : 'Oluwatosin Dairo',
+    #     'Address' : '707 Ambassador Apartments Waterman Walk Salford M503AW',
+    #     'Reg_number' : 'QU3-115/1',
+    #     }
 
-    f_transcript = ['Election of Mayor for Greater Manchester Combined Authority, Date of election Thursday 6 May 2021 Your details: 157699 / QU3 Oluwatosin Dairo 707 Ambassador Apartments Waterman Walk Salford M503AW Number on register: QU3-115/1 You do not need to take this card with you in order to vote. Helpline number: 0161 793 2500 Email: elections@salford.gov.uk www.salford.gov.uk www.gmelects.org.uk, Election of Mayor for Greater Manchester Combined Authority, Date of election Thursday 6 May 2021 Your details: 157700 / QU3 Terri Richardson 707 Ambassador Apartments Waterman Walk Salford M503AW Number on register: QU3-116 You do not need to take this card with you in order to vote. Helpline number: 0161 793 2500 Email: elections@salford.gov.uk www.salford.gov.uk www.gmelects.org.uk']
+    # f_transcript = ['Election of Mayor for Greater Manchester Combined Authority, Date of election Thursday 6 May 2021 Your details: 157699 / QU3 Oluwatosin Dairo 707 Ambassador Apartments Waterman Walk Salford M503AW Number on register: QU3-115/1 You do not need to take this card with you in order to vote. Helpline number: 0161 793 2500 Email: elections@salford.gov.uk www.salford.gov.uk www.gmelects.org.uk, Election of Mayor for Greater Manchester Combined Authority, Date of election Thursday 6 May 2021 Your details: 157700 / QU3 Terri Richardson 707 Ambassador Apartments Waterman Walk Salford M503AW Number on register: QU3-116 You do not need to take this card with you in order to vote. Helpline number: 0161 793 2500 Email: elections@salford.gov.uk www.salford.gov.uk www.gmelects.org.uk']
 
-    
-    data = annotate(f_transcript, data_label)
+
+
+    df_list = []
+
+    doc_id_list, transcript_list, label_dict_list = read_input('/home/ubuntu/tosi-n/custom_sb_optics/data/demo_data_custom_optics.csv')
+
+    for (a, b, c) in zip(doc_id_list, transcript_list, label_dict_list):
+        df_list.append(annotate(a, b, literal_eval(c)))
+
+    data = pd.concat(df_list).sample(frac=1).reset_index(drop=True)
+    print(len(data.index))
 
     train_data, eval_data = data_split(data)
     label = list(set(data.labels.tolist()))

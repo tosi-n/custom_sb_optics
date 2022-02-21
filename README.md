@@ -57,6 +57,26 @@ Test pipeline in your commandline using:
 
     python3 ./main.py
 
+Model training result variable output
+                  precision    recall  f1-score   support
+
+    Address         0.2500    0.0667    0.1053        15
+    Election_day    0.0000    0.0000    0.0000         7
+    Name            0.0000    0.0000    0.0000         7
+    eg_number       0.0000    0.0000    0.0000         2
+
+    micro avg       0.0417    0.0323    0.0364        31
+    macro avg       0.0625    0.0167    0.0263        31
+    weighted avg    0.1210    0.0323    0.0509        31
+
+    accuracy = 0.08888888888888889
+    eval_loss = 2.3222237825393677
+    f1_score = 0.03636363636363637
+    precision = 0.041666666666666664
+    recall = 0.03225806451612903
+
+Model artefacts are folder contents in models/baseline/ folder. Every other folder should be deleted if model result threshold crosses 80% accuracy in result metrics measured else checkpoint should be used in continuous machine learning training CML
+
 #### What next
 
 - Backend deployment

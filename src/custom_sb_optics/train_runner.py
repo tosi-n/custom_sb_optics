@@ -22,14 +22,15 @@ import pandas as pd
 import torch
 from seqeval.metrics import (
     classification_report,
+    accuracy_score,
     f1_score,
     precision_score,
     recall_score,
 )
-from config.global_args import global_args
-from config.utils import sweep_config_to_sweep_values
-from losses.loss_utils import init_loss
-from ner_utils import (
+from .config.global_args import global_args
+from .config.utils import sweep_config_to_sweep_values
+from .losses.loss_utils import init_loss
+from .ner_utils import (
     InputExample,
     LazyNERDataset,
     convert_examples_to_features,
@@ -1192,6 +1193,7 @@ class NERModel:
 
         result = {
             "eval_loss": eval_loss,
+            "accuracy": accuracy_score(out_label_list, preds_list),
             "precision": precision_score(out_label_list, preds_list),
             "recall": recall_score(out_label_list, preds_list),
             "f1_score": f1_score(out_label_list, preds_list),

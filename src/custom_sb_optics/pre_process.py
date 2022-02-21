@@ -10,9 +10,14 @@ import tqdm as tqdm
 from nltk import ngrams
 from sklearn.model_selection import train_test_split
 
-def annotate(transcript_list, label_dict):
+def read_input(datapath):
+    data = pd.read_csv(datapath)
+    doc_id_list, transcript_list, label_dict_list = data['doc_id'].values, data['full_transcribed'].values, data['label'].values
+    return doc_id_list, transcript_list, label_dict_list
+
+def annotate(doc_id, transcript_list, label_dict):
     key = [k for k,v in label_dict.items()]
-    print(key)
+    # print(key)
     transcript_ = transcript_list[0].split()
     exc_f_transcript = []
     for i in key:
@@ -45,13 +50,14 @@ def annotate(transcript_list, label_dict):
 
     df_2 = pd.DataFrame(label_dict_.items(), columns = ['labels', 'words'])
     df_2 = df_2.explode('words')
-    print(df_2.head())
+
     df = pd.concat([df_1, df_2]).sample(frac=1).reset_index(drop=True)
-    df['sentence_id'] = 0
+    df['sentence_id'] = doc_id
+    df = df[['sentence_id', 'words', 'labels']]
+    print(len(df.index))
+    # print(df.head())
     return df
 
 
 def data_split(data):
     return train_test_split(data, test_size=0.3, random_state=123, shuffle=True)
-
-
