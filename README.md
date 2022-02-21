@@ -58,7 +58,7 @@ Test pipeline in your commandline using:
     python3 ./main.py
 
 Model training dummy result variable output
-                  precision    recall  f1-score   support
+    precision    recall  f1-score   support
 
     Address         0.2500    0.0667    0.1053        15
     Election_day    0.0000    0.0000    0.0000         7
