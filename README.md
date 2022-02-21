@@ -57,7 +57,7 @@ Test pipeline in your commandline using:
 
     python3 ./main.py
 
-Model training result variable output
+Model training dummy result variable output
                   precision    recall  f1-score   support
 
     Address         0.2500    0.0667    0.1053        15
