@@ -32,6 +32,14 @@ Install requirements in virtual environment
 
     pip3 install -r requirements.txt
 
+    cd /src/custom_sb_optics/up_img_res
+
+    git clone https://github.com/xinntao/Real-ESRGAN.git .
+
+    pip install -r requirements.txt
+
+    python setup.py develop
+
 
 #### Repo Component Description & Dependencies
 
