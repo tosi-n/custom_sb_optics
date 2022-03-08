@@ -30,6 +30,12 @@ With VENV Create a new virtual environment and install packages.
 
 Install requirements in virtual environment
 
+    sudo apt-get update
+
+    sudo apt-get install python3.7-dev
+
+    sudo apt-get install -y libtesseract-dev libleptonica-dev tesseract-ocr-eng
+    
     pip3 install -r requirements.txt
 
     cd /src/custom_sb_optics/up_img_res
@@ -38,7 +44,7 @@ Install requirements in virtual environment
 
     pip install -r requirements.txt
 
-    python setup.py develop
+    python setup.py develop 
 
 
 #### Repo Component Description & Dependencies
