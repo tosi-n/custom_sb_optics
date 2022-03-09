@@ -8,7 +8,7 @@ import os
 import logging
 import pandas as pd
 from ast import literal_eval
-from src.custom_sb_optics.pre_process import transcribe_input, annotate, data_split
+from src.custom_sb_optics.pre_process import transcribe_input, read_input, annotate, data_split
 from src.custom_sb_optics.train_runner import NERModel
 from src.custom_sb_optics.config.global_args import global_args
 
@@ -28,8 +28,8 @@ if __name__ == "__main__":
 
 
     df_list = []
-
-    doc_id_list, transcript_list, label_dict_list = transcribe_input('/home/ubuntu/tosi-n/custom_sb_optics/data/demo_data_custom_optics.csv')
+    doc_id_list, transcript_list, label_dict_list = read_input('/home/ubuntu/tosi-n/custom_sb_optics/data/demo_data_custom_optics.csv')
+    # doc_id_list, transcript_list, label_dict_list = transcribe_input('/home/ubuntu/tosi-n/custom_sb_optics/data/demo_data_custom_optics.csv')
 
     for (a, b, c) in zip(doc_id_list, transcript_list, label_dict_list):
         df_list.append(annotate(a, b, literal_eval(c)))
