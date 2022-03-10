@@ -107,6 +107,8 @@ def transcribe_input(datapath):
     label_transcript_dict_list = {k:transcribeText(up_resolution(v)) for k,v in label_n_img_dict_list.items()}
     return doc_id_list, full_transcript_list, label_transcript_dict_list
 
+
+
 # Read multiple base64 images and labels for transcription
 def read_input(datapath):
     """

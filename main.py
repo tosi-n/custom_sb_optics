@@ -29,6 +29,7 @@ if __name__ == "__main__":
 
     df_list = []
     doc_id_list, transcript_list, label_dict_list = read_input('/home/ubuntu/tosi-n/custom_sb_optics/data/demo_data_custom_optics.csv')
+    
     # doc_id_list, transcript_list, label_dict_list = transcribe_input('/home/ubuntu/tosi-n/custom_sb_optics/data/demo_data_custom_optics.csv')
 
     for (a, b, c) in zip(doc_id_list, transcript_list, label_dict_list):

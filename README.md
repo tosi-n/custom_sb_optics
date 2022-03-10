@@ -2,6 +2,10 @@ Custom Data Capturing Pipeline
 ======================
 Version 1.1
 
+#### Architectural Flow of ML Pipeline
+
+![Repo Directory and Components](misc/architecture.png)
+
 #### Requirements & Setup
 
 - transformers_version: 4.16.2
@@ -21,6 +25,7 @@ Version 1.1
 - gitflow
 - auto versioning
 - auto reports for ml metrics
+
 
 With VENV Create a new virtual environment and install packages.
 
