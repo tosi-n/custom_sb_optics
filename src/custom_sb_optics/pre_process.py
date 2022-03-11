@@ -95,28 +95,40 @@ def up_resolution(img):
     return output
 
 # Read multiple base64 images and labels for transcription
-def transcribe_input(datapath):
+def transcribe_input(datapath, business_name, category_name):
     """
     Process csv of multiple base64 images and labels to transcribe into precessable contextual strings data annotaions and training
     """
+    # Create company model document category path
+    if not os.path.exists(os.path.join('./models', business_name, category_name, 'baseline')):
+        os.makedirs(os.path.join('./models', business_name, category_name, 'baseline'))
+
+    model_dir = os.path.join('./models', business_name, category_name, 'baseline')
+
     data = pd.read_csv(datapath)
     doc_id_list, full_bs64_img_list, label_n_bs64_img_dict_list = data['doc_id'].values, data['full_transcribed'].values, data['label'].values
     full_img_list = [readb64(bs_64) for bs_64 in full_bs64_img_list]
     full_transcript_list = [transcribeText(img) for img in full_img_list]
     label_n_img_dict_list = { k:readb64(v) for k,v in label_n_bs64_img_dict_list.items()}
     label_transcript_dict_list = {k:transcribeText(up_resolution(v)) for k,v in label_n_img_dict_list.items()}
-    return doc_id_list, full_transcript_list, label_transcript_dict_list
+    return doc_id_list, full_transcript_list, label_transcript_dict_list, model_dir
 
 
 
 # Read multiple base64 images and labels for transcription
-def read_input(datapath):
+def read_input(datapath, business_name, category_name):
     """
     Process csv of labels and transcript data for data annotaions and training
     """
+    # Create company model document category path
+    if not os.path.exists(os.path.join('./models', business_name, category_name, 'baseline')):
+        os.makedirs(os.path.join('./models', business_name, category_name, 'baseline'))
+
+    model_dir = os.path.join('./models', business_name, category_name, 'baseline')
+
     data = pd.read_csv(datapath)
     doc_id_list, full_transcript_list, label_transcript_dict_list = data['doc_id'].values, data['full_transcribed'].values, data['label'].values
-    return doc_id_list, full_transcript_list, label_transcript_dict_list
+    return doc_id_list, full_transcript_list, label_transcript_dict_list, model_dir
 
 
 def annotate(doc_id, full_transcript_list, label_dict):

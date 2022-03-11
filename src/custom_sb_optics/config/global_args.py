@@ -3,8 +3,8 @@ from multiprocessing import cpu_count
 
 global_args = {
     "labels_list": None,
-    "output_dir": "./models/baseline",
-    "best_model_dir": "./models/baseline/best_model",
+    "output_dir": None,
+    "best_model_dir": None,
     "cache_dir": "cache_dir/",
     "config": {},
     "fp16": True, #False

@@ -4,11 +4,18 @@
 # Created Date: 28/01/2022
 # version ='1.0
 
+from sre_constants import CATEGORY
+from unicodedata import category
 from train_runner import NERModel
 from scipy.special import softmax
 import numpy as np
+import os
 
-base_model = './models/baseline'
+BUSINESS = 'business_name'
+
+CATEGORY = 'category_name'
+
+base_model = os.path.join('./models', BUSINESS, CATEGORY, 'baseline') 
 
 model = NERModel( "roberta", base_model, args={'reprocess_input_data': True}, use_cuda=True)
 

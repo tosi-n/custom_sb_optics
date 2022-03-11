@@ -232,6 +232,7 @@ class NERModel:
         else:
             self.device = "cpu"
 
+        print("======== Model global arguements =========\n\n {}".format(self.args))
         self.loss_fct = init_loss(
             weight=self.weight, device=self.device, args=self.args
         )
