@@ -5,9 +5,9 @@
 # version ='1.0
 
 from sre_constants import CATEGORY
-from unicodedata import category
+# from unicodedata import category
 from train_runner import NERModel
-from scipy.special import softmax
+# from scipy.special import softmax
 import numpy as np
 import os
 

@@ -37,7 +37,7 @@ from .ner_utils import (
     get_examples_from_df,
     load_hf_dataset,
     read_examples_from_file,
-    flatten_results,
+    # flatten_results,
 )
 from torch.nn import CrossEntropyLoss
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, TensorDataset

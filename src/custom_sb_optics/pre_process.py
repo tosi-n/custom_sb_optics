@@ -6,7 +6,7 @@
 
 import os
 import cv2
-import json
+# import json
 import base64
 import numpy as np
 import pytesseract
@@ -23,7 +23,7 @@ from sklearn.model_selection import train_test_split
 upsampler_model_path = '/home/ubuntu/tosi-n/custom_sb_optics/models/RealESRGAN_x4plus.pth'
 ink_model_path='https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.3.pth'
 model = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64, num_block=23, num_grow_ch=32, scale=4)
-netscale = 4
+netscale = 4 
 upsampler = RealESRGANer(scale=netscale, model_path=upsampler_model_path, model=model, tile=0, tile_pad=10, pre_pad=0, half=True)
 ink_enhancer = GFPGANer(ink_model_path, upscale=3.5, arch='clean', channel_multiplier=2, bg_upsampler=upsampler)
 
@@ -35,7 +35,7 @@ def adjust_gamma(image, gamma=1.0):
     return cv2.LUT(image, table)
 
 # Image processing fuction return gray scale image
-def image_processing_passport_front(img):
+def image_processing(img):
     """
     Image processing fuction return gray scale image
     """
@@ -63,7 +63,7 @@ def readb64(bs64_):
     # im = Image.open(buf)
     img = Image.open(buf)
     img = cv2.resize(np.asarray(img), (600, 400))
-    img = image_processing_passport_front(img)
+    img = image_processing(img)
     return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 # Transcribe ndarray image data and output string
@@ -149,7 +149,7 @@ def annotate(doc_id, full_transcript_list, label_dict):
                 exc_f_transcript.append(x)
     # print(exc_f_transcript)
     f_transcript = [x for x in transcript_ if x not in exc_f_transcript]
-    # print(f_transcript)
+    ### print(f_transcript)
     df_1 = pd.DataFrame(f_transcript, columns = ['words'])
     df_1['labels'] = 'O'
 
